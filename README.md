@@ -35,7 +35,7 @@ git_refresh refresh --source-url https://github.com/foo/bar.git --target-dir /tm
 ```
 
 ## Troubleshooting
-* If you can't find the `pdqtest` command and your using `rbenv` be sure to run `rbenv rehash` after installing the gem to create the necessary symlinks
+* If you can't find the `git_refresh` command and your using `rbenv` be sure to run `rbenv rehash` after installing the gem to create the necessary symlinks
 
 ## Support
 This software is not supported by Puppet, Inc.  Use at your own risk.
