@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+require 'escort'
+require 'git_refresh'
+requrie 'git_refresh/git'
+
+# display help if nothing specified
+ARGV.push('-h') if ARGV.empty?
+
+Escort::App.create do |app|
+  app.version PDQTest::VERSION
+  app.summary "git_refresh"
+  app.description "Easily checkout git repos from git"
+
+  app.command :refresh do |command|
+    command.summary "Refresh code from git"
+    command.description "Checkout code and switch to the correct ref"
+    command.options do |opts|
+      opts.opt(:target_dir,
+        'Directory to checkout code in',
+        :long     => '--target-dir',
+        :type     => :string,
+        :default  => nil,
+      )
+      opts.opt(:source_url,
+        'Git checkout URL',
+        :long     => '--source-url',
+        :type     => :string,
+        :default  => nil,
+      )
+      opts.opt(:ref,
+        'Git ref to checkout',
+        :long     => '--ref',
+        :type     => :string,
+        :default  => 'master',
+      )
+    end
+    command.action do |options, arguments|
+      target_dir  = options[:global][:commands][:refresh][:options][:target_dir]
+      source_url  = options[:global][:commands][:refresh][:options][:source_url]
+      ref         = options[:global][:commands][:refresh][:options][:ref]
+      if target_dir and source_url
+        GitRefresh::Git.refresh(target_dir, source_url, ref='master')
+      else
+        Escort::Logger.error.error "Must specify --target-dir and --source-url"
+      end
+    end
+  end
+end
