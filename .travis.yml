@@ -1,5 +1,8 @@
 sudo: false
 language: ruby
+services:
+  - docker
 rvm:
-  - 2.3.3
-before_install: gem install bundler -v 1.14.6
+  - 2.2.2
+before_install: gem install bundler -v 1.13.6 
+script: "bundle exec rake spec"
