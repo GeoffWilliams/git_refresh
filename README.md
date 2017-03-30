@@ -1,8 +1,7 @@
+[![Build Status](https://travis-ci.org/GeoffWilliams/git_refresh.svg?branch=master)](https://travis-ci.org/GeoffWilliams/git_refresh)
 # GitRefresh
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/git_refresh`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Checkout a particular ref from git inside a particular directory
 
 ## Installation
 
@@ -21,16 +20,31 @@ Or install it yourself as:
     $ gem install git_refresh
 
 ## Usage
+* see git_refresh --help for most current instructions
 
-TODO: Write usage instructions here
+### Checking out a master branch of a git repo to a directory
 
-## Development
+```shell
+git_refresh refresh --source-url https://github.com/foo/bar.git --target-dir /tmp/bar
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Checking out a specific git ref to a directory
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```shell
+git_refresh refresh --source-url https://github.com/foo/bar.git --target-dir /tmp/bar --ref mybranch
+```
+
+## Troubleshooting
+* If you can't find the `pdqtest` command and your using `rbenv` be sure to run `rbenv rehash` after installing the gem to create the necessary symlinks
+
+## Support
+This software is not supported by Puppet, Inc.  Use at your own risk.
 
 ## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/GeoffWilliams/git_refresh.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/git_refresh.
-
+### Running tests
+* git_refresh includes a comprehensive tests.  Please ensure tests pass before and after any PRs
+* Run all tests `bundle exec rake spec`
+* Run specific test file `bundle exec rspec ./spec/SPEC/FILE/TO/RUN.rb`
+* Run specific test case `bundle exec rspec ./spec/SPEC/FILE/TO/RUN.rb:99` (where 99 is the line number of the test)
