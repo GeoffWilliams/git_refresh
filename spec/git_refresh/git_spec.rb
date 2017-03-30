@@ -10,7 +10,6 @@ describe GitRefresh::Git do
   # extract the testcase git repo from fixtures.  Don't store a git inside a git
   # so use a tarball instead
   before(:all) do
-    puts "unpack testacsae"
     system("cd #{SOURCE_REPO} && tar zxvf #{TESTCASE_REPO_TARBALL}")
   end
 
