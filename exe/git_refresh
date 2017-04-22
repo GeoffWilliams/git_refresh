@@ -39,7 +39,7 @@ Escort::App.create do |app|
       source_url  = options[:global][:commands][:refresh][:options][:source_url]
       ref         = options[:global][:commands][:refresh][:options][:ref]
       if target_dir and source_url
-        GitRefresh::Git.refresh(target_dir, source_url, ref='master')
+        GitRefresh::Git.refresh(target_dir, source_url, ref)
       else
         Escort::Logger.error.error "Must specify --target-dir and --source-url"
       end
